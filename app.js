@@ -61,7 +61,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));//hashing function used by passport -pkbdf
 
-passport.serializeUser(User.serializeUser());
+passport.serializeUser(User.serializeUser());  //we save the session information of the user
 passport.deserializeUser(User.deserializeUser());
 
 app.use((req,res,next)=>{
