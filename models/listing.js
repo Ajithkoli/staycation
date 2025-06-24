@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const Review=require("./review.js");
+const User = require("./user.js");
 
 const listingSchema = new Schema({
   title: {
@@ -15,8 +16,8 @@ const listingSchema = new Schema({
     },
     url: {
       type: String,
-      default: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.instagram.com%2Fmarvelous_belgaum%2Fp%2FCYq5Y4gB6qZ%2F%3Flocale%3Den-GB&psig=AOvVaw1cGfRwG7mXM4N_d6MdlNhq&ust=1747588468092000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCICuusCAq40DFQAAAAAdAAAAABAE",
-      set: v => v === "" ? "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.instagram.com%2Fmarvelous_belgaum%2Fp%2FCYq5Y4gB6qZ%2F%3Flocale%3Den-GB&psig=AOvVaw1cGfRwG7mXM4N_d6MdlNhq&ust=1747588468092000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCICuusCAq40DFQAAAAAdAAAAABAE" : v
+      default: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
+      set: v => v === "" ? "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" : v
     }
   },
   price: Number,
@@ -27,7 +28,11 @@ const listingSchema = new Schema({
       type:Schema.Types.ObjectId,
       ref:"Review",
     }
-  ]
+  ],
+  owner:{
+      type:Schema.Types.ObjectId,
+      ref:"User"
+  }
 });
 
 listingSchema.post("findOneAndDelete",async(listing)=>{
