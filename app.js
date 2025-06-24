@@ -66,8 +66,8 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use((req,res,next)=>{
     res.locals.success=req.flash("success");
-    res.locals.error=req.flash("error");        //locals are the temporary storage which are objects from express so that it can be used in views(ejs)
-    res.locals.currUser=req.user;
+    res.locals.error=req.flash("error");        //locals are the temporary storage which are objects from express so that it can be used in views(ejs)only in ejs file and not in js, in js we will use req.user which stores information from the session
+    res.locals.currUser=req.user;               //this user is saved by the passport and we use it to check about curr logged user
     next();
 })
 
